@@ -1,9 +1,14 @@
 package guerbai.springtodolist.controller;
 
+import guerbai.springtodolist.service.TodoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class TodoController {
+
+    @Autowired
+    private TodoService todoService;
 
     @GetMapping("/ping")
     public String ping() {
@@ -12,6 +17,7 @@ public class TodoController {
 
     @PostMapping(value="/todo")
     public String addTodoItem() {
+        todoService.
         return "1";
     }
 
