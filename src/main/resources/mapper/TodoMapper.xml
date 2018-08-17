@@ -9,8 +9,28 @@
         <result column="done" property="done"/>
     </resultMap>
 
-    <insert id="insert">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO todo (thing) VALUES (#{thing})
     </insert>
+
+    <select id="getTodoById" resultMap="BaseResultMap" parameterType="long">
+        SELECT * FROM todo WHERE id = #{id}
+    </select>
+
+    <delete id="delete" parameterType="long">
+        DELETE FROM todo WHERE id = #{id}
+    </delete>
+
+    <update id="update">
+        UPDATE todo SET
+            thing = #{todo.thing},
+            done = #{todo.done},
+            modified_at = CURRENT_TIMESTAMP
+        WHERE id = #{id}
+    </update>
+
+    <delete id="removeDoneTodoItemList">
+        DELETE FROM todo WHERE done = true;
+    </delete>
 
 </mapper>
