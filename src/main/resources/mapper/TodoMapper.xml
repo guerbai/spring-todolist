@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="guerbai.springtodolist.dao.TodoDao">
-    <resultMap id="TodoResultMap" type="guerbai.springtodolist.domain.Todo">
+    <resultMap id="todoResultMap" type="guerbai.springtodolist.domain.Todo">
         <result column="id" property="id"/>
         <result column="thing" property="thing"/>
         <result column="created_at" property="createdAt"/>
@@ -13,7 +13,7 @@
         INSERT INTO todo (thing) VALUES (#{thing})
     </insert>
 
-    <select id="getTodoById" resultMap="TodoResultMap" parameterType="long">
+    <select id="getTodoById" resultMap="todoResultMap" parameterType="long">
         SELECT * FROM todo WHERE id = #{id}
     </select>
 
@@ -33,8 +33,19 @@
         DELETE FROM todo WHERE done = true;
     </delete>
 
-    <select id="findTodoByFilter" resultType="TodoResultMap">
+    <select id="findTodoByFilter" resultMap="todoResultMap">
         SELECT * FROM todo
+    </select>
+
+    <select id="findTodoByTag" resultMap="todoResultMap">
+        SELECT * FROM todo
+        WHERE id IN
+              (
+                  SELECT todo_id FROM todo_tags
+                  WHERE tag_id = (
+                                      SELECT id FROM tag WHERE name = #{tagName}
+                                  )
+              )
     </select>
 
 </mapper>

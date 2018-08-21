@@ -18,4 +18,7 @@ public interface TodoDao {
     void removeDoneTodoItemList();
 
     List<Todo> findTodoByFilter();
+
+    List<Todo> findTodoByTag(String tagName);
+
 }

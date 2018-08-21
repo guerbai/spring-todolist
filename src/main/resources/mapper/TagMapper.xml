@@ -9,15 +9,33 @@
     </resultMap>
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO tag (name) VALUES (#{name})
+        INSERT INTO tag (name) VALUES (#{tag})
     </insert>
 
     <select id="findTagByName" resultMap="BaseResultMap">
         SELECT * FROM tag WHERE name = #{name}
     </select>
 
-    <delete id="delete" parameterType="long">
-        DELETE FROM tag WHERE id = #{id}
+    <delete id="deleteByTagName">
+        DELETE FROM tag WHERE name = #{name}
     </delete>
+
+    <delete id="removeTagLinks">
+        DELETE FROM todo_ids WHERE tag_id IN (
+                SELECT id FROM tag WHERE name=#{name}
+        )
+    </delete>
+
+    <select id="getTagIdsByNames" resultType="java.lang.Long">
+        SELECT id FROM tag WHERE name in
+        <foreach item="tagName" index="index" collection="list"
+                 open="(" separator="," close=")">
+            #{tagName}
+        </foreach>
+    </select>
+
+    <insert id="createTodoTagLink" useGeneratedKeys="true" keyProperty="id">
+        INSERT todo_tags (todo_id, tag_id) VALUE (#{todoId}, #{tagId})
+    </insert>
 
 </mapper>

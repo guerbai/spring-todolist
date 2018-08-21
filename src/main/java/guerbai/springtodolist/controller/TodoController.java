@@ -27,10 +27,9 @@ public class TodoController {
 
     @PostMapping(value="/todo")
     public Map<String, Object> addTodoItem(@RequestBody Todo todo) {
-//        tagService.ensureTags(todo.tags);
-        todoService.insert(todo);
+        Long id = todoService.insert(todo);
         Map<String, Object> result = new HashMap<>();
-        result.put("id", todo.getId());
+        result.put("id", id);
         return result;
     }
 

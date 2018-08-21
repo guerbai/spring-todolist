@@ -1,12 +1,13 @@
 package guerbai.springtodolist.service;
 
+import guerbai.springtodolist.domain.Tag;
 import guerbai.springtodolist.domain.Todo;
 
 import java.util.List;
 
 public interface TodoService {
 
-    int insert(Todo todo);
+    Long insert(Todo todo);
 
     Todo getTodoById(long id);
 
@@ -17,4 +18,7 @@ public interface TodoService {
     void removeDoneTodoItemList();
 
     List<Todo> findTodoByFilter();
+
+    List<Todo> findTodoByTag(String tagName);
+
 }

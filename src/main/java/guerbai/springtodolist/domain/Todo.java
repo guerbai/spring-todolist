@@ -1,6 +1,7 @@
 package guerbai.springtodolist.domain;
 
 import java.util.Date;
+import java.util.List;
 
 public class Todo {
 
@@ -9,6 +10,16 @@ public class Todo {
     private Date createdAt;
     private Date modifiedAt;
     private boolean done;
+
+    public List<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<String> tags) {
+        this.tags = tags;
+    }
+
+    private List<String> tags;
 
     public Long getId() {
         return id;
