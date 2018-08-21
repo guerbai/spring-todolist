@@ -6,6 +6,8 @@ import guerbai.springtodolist.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TodoServiceImpl implements TodoService {
 
@@ -35,6 +37,11 @@ public class TodoServiceImpl implements TodoService {
     @Override
     public void removeDoneTodoItemList() {
         todoDao.removeDoneTodoItemList();
+    }
+
+    @Override
+    public List<Todo> findTodoByFilter() {
+        return todoDao.findTodoByFilter();
     }
 
 

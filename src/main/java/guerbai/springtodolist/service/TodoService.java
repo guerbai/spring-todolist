@@ -2,6 +2,8 @@ package guerbai.springtodolist.service;
 
 import guerbai.springtodolist.domain.Todo;
 
+import java.util.List;
+
 public interface TodoService {
 
     int insert(Todo todo);
@@ -13,4 +15,6 @@ public interface TodoService {
     void update(long id, Todo todo);
 
     void removeDoneTodoItemList();
+
+    List<Todo> findTodoByFilter();
 }

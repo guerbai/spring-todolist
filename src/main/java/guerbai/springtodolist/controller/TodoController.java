@@ -1,12 +1,14 @@
 package guerbai.springtodolist.controller;
 
 import guerbai.springtodolist.domain.Todo;
+import guerbai.springtodolist.service.TagService;
 import guerbai.springtodolist.service.TodoService;
 import org.apache.ibatis.ognl.IntHashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -15,6 +17,9 @@ public class TodoController {
     @Autowired
     private TodoService todoService;
 
+    @Autowired
+    private TagService tagService;
+
     @GetMapping("/ping")
     public String ping() {
         return "pong!";
@@ -22,6 +27,7 @@ public class TodoController {
 
     @PostMapping(value="/todo")
     public Map<String, Object> addTodoItem(@RequestBody Todo todo) {
+//        tagService.ensureTags(todo.tags);
         todoService.insert(todo);
         Map<String, Object> result = new HashMap<>();
         result.put("id", todo.getId());
@@ -46,8 +52,8 @@ public class TodoController {
     }
 
     @GetMapping(value="/todo")
-    public String getTodoItemList() {
-        return "4";
+    public List<Todo> getTodoItemList() {
+        return todoService.findTodoByFilter();
     }
 
     @PostMapping(value="/todo/clearup")
