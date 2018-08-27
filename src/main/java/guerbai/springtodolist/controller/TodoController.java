@@ -34,11 +34,11 @@ public class TodoController {
 //        return "delete ok!";
 //    }
 
-//    @GetMapping(value="/todo/{id}")
-//    public Todo getTodoItem(@PathVariable("id") Long id) {
-//        return todoService.getTodoById(id);
-//    }
-//
+    @GetMapping(value="/todo/{id}")
+    public Todo getTodoItem(@PathVariable("id") Long id) {
+        return todoService.getTodoById(id);
+    }
+
 //    @PutMapping(value="/todo/{id}")
 //    public Todo editTodoItem(@PathVariable("id") Long id, @RequestBody Todo todo) {
 //        todoService.update(id, todo);

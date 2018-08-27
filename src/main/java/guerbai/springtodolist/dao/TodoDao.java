@@ -9,8 +9,8 @@ public interface TodoDao {
 
     int insert(Todo todo) ;
 
-//    Todo getTodoById(long id);
-//
+    Todo getTodoById(long id);
+
 //    void delete(long id);
 //
 //    void update(@Param("id") long id, @Param("todo") Todo todo);

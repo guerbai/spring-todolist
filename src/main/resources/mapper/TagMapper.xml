@@ -20,6 +20,12 @@
         INSERT todo_tags (todo_id, tag_id) VALUE (#{todoId}, #{tagId})
     </insert>
 
+    <select id="getTagsByTodoId" resultType="java.lang.String">
+        SELECT name FROM tag
+          WHERE id IN (
+              SELECT tag_id FROM todo_tags WHERE todo_id = #{todoId}
+          )
+    </select>
     <!--<delete id="deleteByTagName">-->
         <!--DELETE FROM tag WHERE name = #{name}-->
     <!--</delete>-->

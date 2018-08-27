@@ -37,11 +37,13 @@ public class TodoServiceImpl implements TodoService {
         return todoId;
     }
 
-//    @Override
-//    public Todo getTodoById(long id) {
-//        return todoDao.getTodoById(id);
-//    }
-//
+    @Override
+    public Todo getTodoById(long id) {
+        Todo todo = todoDao.getTodoById(id);
+        todo.setTags(tagDao.getTagsByTodoId(todo.getId()));
+        return todo;
+    }
+
 //    @Override
 //    public void delete(long id) {
 //        Todo todo = getTodoById(id);
