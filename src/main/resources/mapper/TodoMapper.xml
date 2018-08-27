@@ -17,9 +17,9 @@
         SELECT * FROM todo WHERE id = #{id}
     </select>
 
-    <!--<delete id="delete" parameterType="long">-->
-        <!--DELETE FROM todo WHERE id = #{id}-->
-    <!--</delete>-->
+    <delete id="delete" parameterType="long">
+        DELETE FROM todo WHERE id = #{id}
+    </delete>
 
     <!--<update id="update">-->
         <!--UPDATE todo SET-->

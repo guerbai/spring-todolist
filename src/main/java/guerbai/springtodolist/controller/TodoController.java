@@ -28,11 +28,11 @@ public class TodoController {
         return result;
     }
 
-//    @DeleteMapping(value="/todo/{id}")
-//    public String deleteTodoItem(@PathVariable("id") Long id) {
-//        todoService.delete(id);
-//        return "delete ok!";
-//    }
+    @DeleteMapping(value="/todo/{id}")
+    public String deleteTodoItem(@PathVariable("id") Long id) {
+        todoService.delete(id);
+        return "delete ok!";
+    }
 
     @GetMapping(value="/todo/{id}")
     public Todo getTodoItem(@PathVariable("id") Long id) {

@@ -14,6 +14,9 @@ public interface TagDao {
     int link(@Param("todoId") Long todoId, @Param("tagId") Long tagId);
 
     List<String> getTagsByTodoId(Long todoId);
+
+    void unlinkByTodoId(Long todoId);
+
 //    void deleteByTagName(String name);
 //
 //    void removeTagLinks(String name);

@@ -26,6 +26,11 @@
               SELECT tag_id FROM todo_tags WHERE todo_id = #{todoId}
           )
     </select>
+
+    <delete id="unlinkByTodoId">
+        DELETE FROM todo_tags WHERE todo_id = #{todoId}
+    </delete>
+
     <!--<delete id="deleteByTagName">-->
         <!--DELETE FROM tag WHERE name = #{name}-->
     <!--</delete>-->

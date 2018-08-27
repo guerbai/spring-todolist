@@ -11,8 +11,8 @@ public interface TodoDao {
 
     Todo getTodoById(long id);
 
-//    void delete(long id);
-//
+    void delete(long id);
+
 //    void update(@Param("id") long id, @Param("todo") Todo todo);
 //
 //    void removeDoneTodoItemList();

@@ -28,9 +28,6 @@ public class TodoServiceImpl implements TodoService {
         List<Long> tagIds = tagService.ensureTags(tags);
         todoDao.insert(todo);
         Long todoId = todo.getId();
-        System.out.println("------");
-        System.out.println(tagIds);
-        System.out.println(todoId);
         for (Long tagid: tagIds) {
             tagService.link(todo.getId(), tagid);
         }
@@ -44,14 +41,12 @@ public class TodoServiceImpl implements TodoService {
         return todo;
     }
 
-//    @Override
-//    public void delete(long id) {
-//        Todo todo = getTodoById(id);
-//        List<Long> tagIds = tagDao.getTagIdsByTodoId(id);
-//        todoDao.delete(id);
-//        tagService.checkNoUseTags(tagIds);
-//    }
-//
+    @Override
+    public void delete(long id) {
+        tagDao.unlinkByTodoId(id);
+        todoDao.delete(id);
+    }
+
 //    @Override
 //    public void update(long id, Todo todo) {
 //        todoDao.update(id, todo);
