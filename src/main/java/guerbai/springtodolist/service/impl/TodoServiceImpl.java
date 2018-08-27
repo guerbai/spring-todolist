@@ -52,11 +52,12 @@ public class TodoServiceImpl implements TodoService {
 //        todoDao.update(id, todo);
 //    }
 //
-//    @Override
-//    public void removeDoneTodoItemList() {
-//        todoDao.removeDoneTodoItemList();
-//    }
-//
+    @Override
+    public void removeDoneTodoItemList() {
+        tagDao.clearLinkByDoneTodoItems();
+        todoDao.clearDoneItems();
+    }
+
 //    @Override
 //    public List<Todo> findTodoByFilter() {
 //        return todoDao.findTodoByFilter();

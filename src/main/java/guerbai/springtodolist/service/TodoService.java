@@ -15,8 +15,8 @@ public interface TodoService {
 
 //    void update(long id, Todo todo);
 //
-//    void removeDoneTodoItemList();
-//
+    void removeDoneTodoItemList();
+
 //    List<Todo> findTodoByFilter();
 //
 //    List<Todo> findTodoByTag(String tagName);

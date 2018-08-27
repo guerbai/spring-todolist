@@ -31,6 +31,11 @@
         DELETE FROM todo_tags WHERE todo_id = #{todoId}
     </delete>
 
+    <delete id="clearLinkByDoneTodoItems">
+        DELETE FROM todo_tags WHERE todo_id IN (
+                SELECT id FROM todo WHERE done = true)
+    </delete>
+
     <!--<delete id="deleteByTagName">-->
         <!--DELETE FROM tag WHERE name = #{name}-->
     <!--</delete>-->

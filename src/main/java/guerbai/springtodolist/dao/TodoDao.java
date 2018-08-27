@@ -13,6 +13,8 @@ public interface TodoDao {
 
     void delete(long id);
 
+    void clearDoneItems();
+
 //    void update(@Param("id") long id, @Param("todo") Todo todo);
 //
 //    void removeDoneTodoItemList();

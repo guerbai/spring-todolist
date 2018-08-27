@@ -17,6 +17,8 @@ public interface TagDao {
 
     void unlinkByTodoId(Long todoId);
 
+    void clearLinkByDoneTodoItems();
+
 //    void deleteByTagName(String name);
 //
 //    void removeTagLinks(String name);

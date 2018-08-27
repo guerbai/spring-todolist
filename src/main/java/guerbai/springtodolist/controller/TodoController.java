@@ -50,10 +50,10 @@ public class TodoController {
 //        return todoService.findTodoByFilter();
 //    }
 //
-//    @PostMapping(value="/todo/clearup")
-//    public String removeDoneTodoItemList() {
-//        todoService.removeDoneTodoItemList();
-//        return "clear done!";
-//    }
+    @PostMapping(value="/todo/clearup")
+    public String removeDoneTodoItemList() {
+        todoService.removeDoneTodoItemList();
+        return "clear done!";
+    }
 
 }
