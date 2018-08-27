@@ -39,12 +39,12 @@ public class TodoController {
         return todoService.getTodoById(id);
     }
 
-//    @PutMapping(value="/todo/{id}")
-//    public Todo editTodoItem(@PathVariable("id") Long id, @RequestBody Todo todo) {
-//        todoService.update(id, todo);
-//        return todoService.getTodoById(id);
-//    }
-//
+    @PutMapping(value="/todo/{id}")
+    public Todo editTodoItem(@PathVariable("id") Long id, @RequestBody Todo todo) {
+        todoService.update(id, todo);
+        return todoService.getTodoById(id);
+    }
+
 //    @GetMapping(value="/todo")
 //    public List<Todo> getTodoItemList() {
 //        return todoService.findTodoByFilter();

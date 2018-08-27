@@ -47,11 +47,17 @@ public class TodoServiceImpl implements TodoService {
         todoDao.delete(id);
     }
 
-//    @Override
-//    public void update(long id, Todo todo) {
-//        todoDao.update(id, todo);
-//    }
-//
+    @Override
+    public void update(long id, Todo todo) {
+        List<String> tags = todo.getTags();
+        tagDao.unlinkByTodoId(id);
+        List<Long> tagIds = tagService.ensureTags(tags);
+        for (Long tagId: tagIds) {
+            tagService.link(id, tagId);
+        }
+        todoDao.update(id, todo);
+    }
+
     @Override
     public void removeDoneTodoItemList() {
         tagDao.clearLinkByDoneTodoItems();

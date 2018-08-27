@@ -13,8 +13,8 @@ public interface TodoService {
 
     void delete(long id);
 
-//    void update(long id, Todo todo);
-//
+    void update(long id, Todo todo);
+
     void removeDoneTodoItemList();
 
 //    List<Todo> findTodoByFilter();

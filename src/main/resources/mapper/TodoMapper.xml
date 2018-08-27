@@ -25,13 +25,13 @@
         DELETE FROM todo WHERE done = true
     </delete>
 
-    <!--<update id="update">-->
-        <!--UPDATE todo SET-->
-            <!--thing = #{todo.thing},-->
-            <!--done = #{todo.done},-->
-            <!--modified_at = CURRENT_TIMESTAMP-->
-        <!--WHERE id = #{id}-->
-    <!--</update>-->
+    <update id="update">
+        UPDATE todo SET
+            thing = #{todo.thing},
+            done = #{todo.done},
+            modified_at = CURRENT_TIMESTAMP
+        WHERE id = #{id}
+    </update>
 
     <!--<delete id="removeDoneTodoItemList">-->
         <!--DELETE FROM todo WHERE done = true;-->
