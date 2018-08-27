@@ -25,49 +25,50 @@ public class TodoServiceImpl implements TodoService {
     @Override
     public Long insert(Todo todo) {
         List<String> tags = todo.getTags();
-        tagService.ensureTags(tags);
-        List<Long> tagIds = tagService.getTagIdsByNames(tags);
+        List<Long> tagIds = tagService.ensureTags(tags);
         todoDao.insert(todo);
         Long todoId = todo.getId();
+        System.out.println("------");
+        System.out.println(tagIds);
+        System.out.println(todoId);
         for (Long tagid: tagIds) {
-            tagService.createTodoTagLink(todo.getId(), tagid);
+            tagService.link(todo.getId(), tagid);
         }
         return todoId;
     }
 
-    @Override
-    public Todo getTodoById(long id) {
-        return todoDao.getTodoById(id);
-    }
-
-    @Override
-    public void delete(long id) {
-        Todo todo = getTodoById(id);
-        List<String> tags = todo.getTags();
-        todoDao.delete(id);
-        System.out.println(tags);
-        tagService.checkNoUseTags(tags);
-    }
-
-    @Override
-    public void update(long id, Todo todo) {
-        todoDao.update(id, todo);
-    }
-
-    @Override
-    public void removeDoneTodoItemList() {
-        todoDao.removeDoneTodoItemList();
-    }
-
-    @Override
-    public List<Todo> findTodoByFilter() {
-        return todoDao.findTodoByFilter();
-    }
-
-    @Override
-    public List<Todo> findTodoByTag(String tagName) {
-        return todoDao.findTodoByTag(tagName);
-    }
+//    @Override
+//    public Todo getTodoById(long id) {
+//        return todoDao.getTodoById(id);
+//    }
+//
+//    @Override
+//    public void delete(long id) {
+//        Todo todo = getTodoById(id);
+//        List<Long> tagIds = tagDao.getTagIdsByTodoId(id);
+//        todoDao.delete(id);
+//        tagService.checkNoUseTags(tagIds);
+//    }
+//
+//    @Override
+//    public void update(long id, Todo todo) {
+//        todoDao.update(id, todo);
+//    }
+//
+//    @Override
+//    public void removeDoneTodoItemList() {
+//        todoDao.removeDoneTodoItemList();
+//    }
+//
+//    @Override
+//    public List<Todo> findTodoByFilter() {
+//        return todoDao.findTodoByFilter();
+//    }
+//
+//    @Override
+//    public List<Todo> findTodoByTag(String tagName) {
+//        return todoDao.findTodoByTag(tagName);
+//    }
 
 
 }

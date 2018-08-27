@@ -7,18 +7,18 @@ import java.util.List;
 
 public interface TodoDao {
 
-    int insert(Todo to) ;
+    int insert(Todo todo) ;
 
-    Todo getTodoById(long id);
-
-    void delete(long id);
-
-    void update(@Param("id") long id, @Param("todo") Todo todo);
-
-    void removeDoneTodoItemList();
-
-    List<Todo> findTodoByFilter();
-
-    List<Todo> findTodoByTag(String tagName);
+//    Todo getTodoById(long id);
+//
+//    void delete(long id);
+//
+//    void update(@Param("id") long id, @Param("todo") Todo todo);
+//
+//    void removeDoneTodoItemList();
+//
+//    List<Todo> findTodoByFilter();
+//
+//    List<Todo> findTodoByTag(String tagName);
 
 }

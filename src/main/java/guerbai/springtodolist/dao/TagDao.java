@@ -7,16 +7,19 @@ import java.util.List;
 
 public interface TagDao {
 
-    int insert(String tag);
+    int insert(Tag tag);
 
     Tag findTagByName(String name);
 
-    void deleteByTagName(String name);
+    int link(@Param("todoId") Long todoId, @Param("tagId") Long tagId);
 
-    void removeTagLinks(String name);
+//    void deleteByTagName(String name);
+//
+//    void removeTagLinks(String name);
+//
 
-    int createTodoTagLink(@Param("todoId") Long todoId, @Param("tagId") Long tagId);
-
-    List<Long> getTagIdsByNames(List<String> tagNames);
+//    List<Long> getTagIdsByNames(List<String> tagNames);
+//
+//    List<Long> getTagIdsByTodoId(Long id);
 
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="guerbai.springtodolist.dao.TagDao">
-    <resultMap id="BaseResultMap" type="guerbai.springtodolist.domain.Tag">
+    <resultMap id="TagResultMap" type="guerbai.springtodolist.domain.Tag">
         <result column="id" property="id"/>
         <result column="name" property="name"/>
         <result column="created_at" property="createdAt"/>
@@ -9,33 +9,34 @@
     </resultMap>
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO tag (name) VALUES (#{tag})
+        INSERT INTO tag (name) VALUES (#{name})
     </insert>
 
-    <select id="findTagByName" resultMap="BaseResultMap">
+    <select id="findTagByName" resultMap="TagResultMap">
         SELECT * FROM tag WHERE name = #{name}
     </select>
 
-    <delete id="deleteByTagName">
-        DELETE FROM tag WHERE name = #{name}
-    </delete>
-
-    <delete id="removeTagLinks">
-        DELETE FROM todo_ids WHERE tag_id IN (
-                SELECT id FROM tag WHERE name=#{name}
-        )
-    </delete>
-
-    <select id="getTagIdsByNames" resultType="java.lang.Long">
-        SELECT id FROM tag WHERE name in
-        <foreach item="tagName" index="index" collection="list"
-                 open="(" separator="," close=")">
-            #{tagName}
-        </foreach>
-    </select>
-
-    <insert id="createTodoTagLink" useGeneratedKeys="true" keyProperty="id">
+    <insert id="link" useGeneratedKeys="true" keyProperty="id">
         INSERT todo_tags (todo_id, tag_id) VALUE (#{todoId}, #{tagId})
     </insert>
+
+    <!--<delete id="deleteByTagName">-->
+        <!--DELETE FROM tag WHERE name = #{name}-->
+    <!--</delete>-->
+
+    <!--<delete id="removeTagLinks">-->
+        <!--DELETE FROM todo_ids WHERE tag_id IN (-->
+                <!--SELECT id FROM tag WHERE name=#{name}-->
+        <!--)-->
+    <!--</delete>-->
+
+    <!--<select id="getTagIdsByNames" resultType="java.lang.Long">-->
+        <!--SELECT id FROM tag WHERE name in-->
+        <!--<foreach item="tagName" index="index" collection="list"-->
+                 <!--open="(" separator="," close=")">-->
+            <!--#{tagName}-->
+        <!--</foreach>-->
+    <!--</select>-->
+
 
 </mapper>
