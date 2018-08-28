@@ -2,12 +2,14 @@ package guerbai.springtodolist.service.impl;
 
 import guerbai.springtodolist.dao.TagDao;
 import guerbai.springtodolist.dao.TodoDao;
+import guerbai.springtodolist.domain.Filter;
 import guerbai.springtodolist.domain.Todo;
 import guerbai.springtodolist.service.TagService;
 import guerbai.springtodolist.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -64,15 +66,18 @@ public class TodoServiceImpl implements TodoService {
         todoDao.clearDoneItems();
     }
 
-//    @Override
-//    public List<Todo> findTodoByFilter() {
-//        return todoDao.findTodoByFilter();
-//    }
-//
-//    @Override
-//    public List<Todo> findTodoByTag(String tagName) {
-//        return todoDao.findTodoByTag(tagName);
-//    }
+    @Override
+    public List<Todo> findTodoByFilter(Filter filter) {
+        List<Todo> todoList = todoDao.findTodoByFilter(filter);
+        for (Todo t: todoList) {
+            t.setTags(tagDao.getTagsByTodoId(t.getId()));
+        }
+        return todoList;
+    }
 
+    @Override
+    public Long countTodoByFilter(Filter filter) {
+        return todoDao.countTodoByFilter(filter);
+    }
 
 }

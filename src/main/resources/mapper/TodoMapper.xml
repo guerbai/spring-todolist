@@ -33,23 +33,28 @@
         WHERE id = #{id}
     </update>
 
-    <!--<delete id="removeDoneTodoItemList">-->
-        <!--DELETE FROM todo WHERE done = true;-->
-    <!--</delete>-->
+    <sql id="filter">
+        <where>
+            <if test="filter.done != -1">
+                done = #{filter.done}
+            </if>
+            <if test="filter.tag != null">
+                AND id IN (SELECT todo_id FROM todo_tags WHERE tag_id = (
+                SELECT id FROM tag WHERE name = #{filter.tag} ))
+            </if>
+        </where>
+    </sql>
 
-    <!--<select id="findTodoByFilter" resultMap="todoResultMap">-->
-        <!--SELECT * FROM todo-->
-    <!--</select>-->
 
-    <!--<select id="findTodoByTag" resultMap="todoResultMap">-->
-        <!--SELECT * FROM todo-->
-        <!--WHERE id IN-->
-              <!--(-->
-                  <!--SELECT todo_id FROM todo_tags-->
-                  <!--WHERE tag_id = (-->
-                                      <!--SELECT id FROM tag WHERE name = #{tagName}-->
-                                  <!--)-->
-              <!--)-->
-    <!--</select>-->
+    <select id="findTodoByFilter" resultMap="todoResultMap">
+        SELECT * FROM todo
+        <include refid="filter"/>
+        LIMIT #{filter.num} OFFSET #{filter.offset}
+    </select>
+
+    <select id="countTodoByFilter" resultType="java.lang.Long">
+        SELECT COUNT(id) FROM todo
+        <include refid="filter"/>
+    </select>
 
 </mapper>

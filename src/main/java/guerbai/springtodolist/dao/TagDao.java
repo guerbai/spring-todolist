@@ -19,13 +19,4 @@ public interface TagDao {
 
     void clearLinkByDoneTodoItems();
 
-//    void deleteByTagName(String name);
-//
-//    void removeTagLinks(String name);
-//
-
-//    List<Long> getTagIdsByNames(List<String> tagNames);
-//
-//    List<Long> getTagIdsByTodoId(Long id);
-
 }

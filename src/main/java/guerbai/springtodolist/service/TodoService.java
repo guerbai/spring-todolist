@@ -1,6 +1,6 @@
 package guerbai.springtodolist.service;
 
-import guerbai.springtodolist.domain.Tag;
+import guerbai.springtodolist.domain.Filter;
 import guerbai.springtodolist.domain.Todo;
 
 import java.util.List;
@@ -17,8 +17,10 @@ public interface TodoService {
 
     void removeDoneTodoItemList();
 
-//    List<Todo> findTodoByFilter();
-//
+    List<Todo> findTodoByFilter(Filter filter);
+
+    Long countTodoByFilter(Filter filter);
+
 //    List<Todo> findTodoByTag(String tagName);
 
 }

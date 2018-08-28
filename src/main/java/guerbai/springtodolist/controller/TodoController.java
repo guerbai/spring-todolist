@@ -1,5 +1,7 @@
 package guerbai.springtodolist.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import guerbai.springtodolist.domain.Filter;
 import guerbai.springtodolist.domain.Todo;
 import guerbai.springtodolist.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,11 +47,23 @@ public class TodoController {
         return todoService.getTodoById(id);
     }
 
-//    @GetMapping(value="/todo")
-//    public List<Todo> getTodoItemList() {
-//        return todoService.findTodoByFilter();
-//    }
-//
+    @GetMapping(value="/todo")
+    public Map<String, Object> getTodoItemList(@RequestParam Map<String, Object> filter) {
+        Map<String, Object> result = new HashMap<>();
+        ObjectMapper mapper = new ObjectMapper();
+        if (filter.get("done") == null) {
+            filter.put("done", -1);
+        } else if ("true".equals(filter.get("done"))) {
+            filter.put("done", 1);
+        } else if ("false".equals(filter.get("done"))) {
+            filter.put("done", 0);
+        }
+        Filter filterPojo = mapper.convertValue(filter, Filter.class);
+        result.put("todolist", todoService.findTodoByFilter(filterPojo));
+        result.put("total_num", todoService.countTodoByFilter(filterPojo));
+        return result;
+    }
+
     @PostMapping(value="/todo/clearup")
     public String removeDoneTodoItemList() {
         todoService.removeDoneTodoItemList();
