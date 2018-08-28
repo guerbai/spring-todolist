@@ -1,6 +1,5 @@
 package guerbai.springtodolist;
 
-import guerbai.springtodolist.controller.TodoController;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
