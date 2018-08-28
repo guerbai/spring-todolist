@@ -42,7 +42,7 @@ public class WebLogAspect {
     @AfterReturning(returning = "ret", pointcut = "webLog()")
     public void doAfterReturning(Object ret) throws Throwable {
         logger.info("RESPONSE : " + ret);
-        logger.info("SPEND TIME : " + (System.currentTimeMillis() - startTime.get()));
+        logger.info("SPEND TIME : " + (System.currentTimeMillis() - startTime.get()) + "ms");
     }
 
 }
