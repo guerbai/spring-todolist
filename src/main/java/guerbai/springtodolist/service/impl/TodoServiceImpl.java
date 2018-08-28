@@ -8,8 +8,8 @@ import guerbai.springtodolist.service.TagService;
 import guerbai.springtodolist.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -25,6 +25,7 @@ public class TodoServiceImpl implements TodoService {
     private TagService tagService;
 
     @Override
+    @Transactional
     public Long insert(Todo todo) {
         List<String> tags = todo.getTags();
         List<Long> tagIds = tagService.ensureTags(tags);
@@ -44,12 +45,14 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
+    @Transactional(rollbackFor = RuntimeException.class)
     public void delete(long id) {
         tagDao.unlinkByTodoId(id);
         todoDao.delete(id);
     }
 
     @Override
+    @Transactional(rollbackFor = RuntimeException.class)
     public void update(long id, Todo todo) {
         List<String> tags = todo.getTags();
         tagDao.unlinkByTodoId(id);
@@ -61,6 +64,7 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
+    @Transactional(rollbackFor = RuntimeException.class)
     public void removeDoneTodoItemList() {
         tagDao.clearLinkByDoneTodoItems();
         todoDao.clearDoneItems();
