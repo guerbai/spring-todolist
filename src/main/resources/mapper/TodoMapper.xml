@@ -6,7 +6,7 @@
         <result column="thing" property="thing"/>
         <result column="created_at" property="createdAt"/>
         <result column="modified_at" property="modifiedAt"/>
-        <result column="done" property="done"/>
+        <result column="todo_status" property="todoStatus"/>
     </resultMap>
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
@@ -22,21 +22,21 @@
     </delete>
 
     <delete id="clearDoneItems">
-        DELETE FROM todo WHERE done = true
+        DELETE FROM todo WHERE todo_status = 'DONE'
     </delete>
 
     <update id="update">
         UPDATE todo SET
             thing = #{todo.thing},
-            done = #{todo.done},
+            todo_status = #{todo.todoStatus},
             modified_at = CURRENT_TIMESTAMP
         WHERE id = #{id}
     </update>
 
     <sql id="filter">
         <where>
-            <if test="filter.done != -1">
-                done = #{filter.done}
+            <if test="filter.todoStatus != null">
+                todo_status = #{filter.todoStatus}
             </if>
             <if test="filter.tag != null">
                 AND id IN (SELECT todo_id FROM todo_tags WHERE tag_id = (

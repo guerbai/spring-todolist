@@ -3,18 +3,18 @@ package guerbai.springtodolist.domain;
 import java.util.List;
 
 public class Filter {
-    private int done;
+    private TodoStatus todoStatus;
     private int num;
     private int page;
     private int offset;
     private String tag;
 
-    public int isDone() {
-        return done;
+    public TodoStatus getTodoStatus() {
+        return todoStatus;
     }
 
-    public void setDone(int done) {
-        this.done = done;
+    public void setTodoStatus(TodoStatus todoStatus) {
+        this.todoStatus = todoStatus;
     }
 
     public int getNum() {

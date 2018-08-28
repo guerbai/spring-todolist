@@ -9,7 +9,7 @@ public class Todo {
     private String thing;
     private Date createdAt;
     private Date modifiedAt;
-    private boolean done;
+    private TodoStatus todoStatus;
 
     public List<String> getTags() {
         return tags;
@@ -53,12 +53,12 @@ public class Todo {
         this.modifiedAt = modifiedAt;
     }
 
-    public boolean isDone() {
-        return done;
+    public TodoStatus getTodoStatus() {
+        return todoStatus;
     }
 
-    public void setDone(boolean done) {
-        this.done = done;
+    public void setTodoStatus(TodoStatus todoStatus) {
+        this.todoStatus = todoStatus;
     }
 
 }

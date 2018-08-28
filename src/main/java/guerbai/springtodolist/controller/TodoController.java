@@ -51,13 +51,6 @@ public class TodoController {
     public Map<String, Object> getTodoItemList(@RequestParam Map<String, Object> filter) {
         Map<String, Object> result = new HashMap<>();
         ObjectMapper mapper = new ObjectMapper();
-        if (filter.get("done") == null) {
-            filter.put("done", -1);
-        } else if ("true".equals(filter.get("done"))) {
-            filter.put("done", 1);
-        } else if ("false".equals(filter.get("done"))) {
-            filter.put("done", 0);
-        }
         Filter filterPojo = mapper.convertValue(filter, Filter.class);
         result.put("todolist", todoService.findTodoByFilter(filterPojo));
         result.put("total_num", todoService.countTodoByFilter(filterPojo));
