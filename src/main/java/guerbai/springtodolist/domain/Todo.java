@@ -61,4 +61,17 @@ public class Todo {
         this.todoStatus = todoStatus;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("<id=")
+            .append(id)
+            .append(", thing=")
+            .append(thing)
+            .append(", tags=")
+            .append(tags.toString())
+            .append(">");
+        return sb.toString();
+    }
+
 }
