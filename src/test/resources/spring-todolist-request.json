@@ -1,0 +1,172 @@
+{
+	"info": {
+		"_postman_id": "5437492e-0d4b-46b2-ba7d-4a8490c4e40b",
+		"name": "test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "spring-todolist",
+			"item": [
+				{
+					"name": "增加一条todo",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"thing\": \"error\",\n\t\"tags\": [\"学习\", \"娱乐\", \"vim\"]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8088/todo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8088",
+							"path": [
+								"todo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "获取一条todo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8088/todo/32",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8088",
+							"path": [
+								"todo",
+								"32"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "删除一条todo",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8088/todo/30",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8088",
+							"path": [
+								"todo",
+								"30"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "修改一条todo",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"thing\": \"modified一件事23\",\n\t\"todoStatus\": \"DONE\",\n\t\"tags\": [\"emacs\", \"一个\"]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8088/todo/32",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8088",
+							"path": [
+								"todo",
+								"32"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "清除已完成",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8088/todo/clearup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8088",
+							"path": [
+								"todo",
+								"clearup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "查询todo列表",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8088/todo?page=1&num=2&todoStatus=WAIT",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8088",
+							"path": [
+								"todo"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "num",
+									"value": "2"
+								},
+								{
+									"key": "todoStatus",
+									"value": "WAIT"
+								},
+								{
+									"key": null,
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
